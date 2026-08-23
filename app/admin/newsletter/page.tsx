@@ -1,6 +1,6 @@
 import React from 'react';
 import { createClient } from '@/utils/supabase/server';
-import { unsubscribe } from './actions';
+import { unsubscribe, permanentDelete } from './actions';
 
 export default async function NewsletterPage() {
   const supabase = await createClient();
@@ -50,14 +50,22 @@ export default async function NewsletterPage() {
                                 </span>
                             </td>
                             <td className="actions-cell">
-                                {sub.is_active && (
-                                    <form action={unsubscribe}>
+                                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                    {sub.is_active && (
+                                        <form action={unsubscribe}>
+                                            <input type="hidden" name="subscriber_id" value={sub.subscriber_id} />
+                                            <button type="submit" className="action-btn" title="Unsubscribe" style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}>
+                                                <i className="fas fa-ban"></i> Unsubscribe
+                                            </button>
+                                        </form>
+                                    )}
+                                    <form action={permanentDelete}>
                                         <input type="hidden" name="subscriber_id" value={sub.subscriber_id} />
-                                        <button type="submit" className="action-btn" style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}>
-                                            <i className="fas fa-ban"></i> Unsubscribe
+                                        <button type="submit" className="action-btn delete-btn" title="Permanent Delete" style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#ef4444' }}>
+                                            <i className="fas fa-trash"></i> Delete
                                         </button>
                                     </form>
-                                )}
+                                </div>
                             </td>
                         </tr>
                     ))

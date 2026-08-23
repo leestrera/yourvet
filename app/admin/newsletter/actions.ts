@@ -22,3 +22,19 @@ export async function unsubscribe(formData: FormData) {
 
     revalidatePath('/admin/newsletter');
 }
+export async function permanentDelete(formData: FormData) {
+    const supabase = await createClient();
+    const subscriber_id = formData.get('subscriber_id');
+
+    const { error } = await supabase
+        .from('newsletter_subscribers')
+        .delete()
+        .eq('subscriber_id', subscriber_id);
+
+    if (error) {
+        console.error('Error deleting subscriber:', error);
+        throw new Error('Failed to delete subscriber');
+    }
+
+    revalidatePath('/admin/newsletter');
+}
