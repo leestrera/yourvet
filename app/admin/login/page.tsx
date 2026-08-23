@@ -60,8 +60,9 @@ export default async function LoginPage({
             <button type="submit" className="login-btn">Login</button>
         </form>
         
-        <div className="back-link">
+        <div className="login-footer" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', fontSize: '0.9rem' }}>
             <a href="/">← Back to Website</a>
+            <a href="/admin/login/reset-password">Forgot Password?</a>
         </div>
     </div>
   );

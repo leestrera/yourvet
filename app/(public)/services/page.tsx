@@ -3,6 +3,8 @@ import './services.css';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 // Helpers
 const getCategoryIcon = (category: string) => {
     const icons: Record<string, string> = {
