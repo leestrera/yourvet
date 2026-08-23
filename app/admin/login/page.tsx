@@ -34,36 +34,38 @@ export default async function LoginPage({
   }
 
   return (
-    <div className="login-container">
-        <div className="login-header">
-            <h1>Admin Login</h1>
-            <p>Your Vet</p>
-        </div>
-        
-        {(await searchParams).message && (
-            <div className="alert alert-error">
-                {(await searchParams).message}
-            </div>
-        )}
-        
-        <form action={login}>
-            <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" name="email" required autoFocus />
-            </div>
-            
-            <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" required />
-            </div>
-            
-            <button type="submit" className="login-btn">Login</button>
-        </form>
-        
-        <div className="login-footer" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', fontSize: '0.9rem' }}>
-            <a href="/">← Back to Website</a>
-            <a href="/admin/login/reset-password">Forgot Password?</a>
-        </div>
+    <div className="login-page-wrapper">
+      <div className="login-container">
+          <div className="login-header">
+              <h1>Admin Login</h1>
+              <p>Your Vet</p>
+          </div>
+          
+          {(await searchParams).message && (
+              <div className="alert alert-error">
+                  {(await searchParams).message}
+              </div>
+          )}
+          
+          <form action={login}>
+              <div className="form-group">
+                  <label htmlFor="email">Email Address</label>
+                  <input type="email" id="email" name="email" required autoFocus />
+              </div>
+              
+              <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input type="password" id="password" name="password" required />
+              </div>
+              
+              <button type="submit" className="login-btn">Login</button>
+          </form>
+          
+          <div className="login-footer" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', fontSize: '0.9rem' }}>
+              <a href="/">← Back to Website</a>
+              <a href="/admin/login/reset-password">Forgot Password?</a>
+          </div>
+      </div>
     </div>
   );
 }
