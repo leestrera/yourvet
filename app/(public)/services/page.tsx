@@ -1,6 +1,6 @@
 import React from 'react';
 import './services.css';
-import { createAdminClient } from '@/utils/supabase/server';
+import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import Link from 'next/link';
 
 // Helpers
@@ -31,7 +31,10 @@ const getCategoryDescription = (category: string) => {
 };
 
 export default async function Services() {
-  const supabase = await createAdminClient();
+  const supabase = createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
   
   // Fetch Services
   const { data: servicesData } = await supabase
