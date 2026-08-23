@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation';
 
 export async function createFaq(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const question = formData.get('question');
   const answer = formData.get('answer');
   const category = formData.get('category');
@@ -31,6 +35,10 @@ export async function createFaq(formData: FormData) {
 
 export async function updateFaq(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const faq_id = formData.get('faq_id');
   const question = formData.get('question');
   const answer = formData.get('answer');
@@ -57,6 +65,10 @@ export async function updateFaq(formData: FormData) {
 
 export async function deleteFaq(faq_id: string) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const { error } = await supabase.from('faqs').delete().eq('faq_id', faq_id);
     if (error) {
         console.error('Error deleting FAQ:', error);

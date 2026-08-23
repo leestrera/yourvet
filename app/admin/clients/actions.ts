@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation';
 
 export async function addClient(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   
   const clientData = {
     first_name: formData.get('first_name'),
@@ -35,6 +39,10 @@ export async function addClient(formData: FormData) {
 
 export async function editClient(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const owner_id = formData.get('owner_id') as string;
   
   const clientData = {
@@ -65,6 +73,10 @@ export async function editClient(formData: FormData) {
 
 export async function addPet(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const owner_id = formData.get('owner_id') as string;
   
   const petData = {
@@ -94,6 +106,10 @@ export async function addPet(formData: FormData) {
 
 export async function editPet(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const pet_id = formData.get('pet_id') as string;
   const owner_id = formData.get('owner_id') as string;
   

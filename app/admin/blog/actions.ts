@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation';
 
 export async function createBlogPost(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const title = formData.get('title');
   const slug = formData.get('slug');
   const content = formData.get('content');
@@ -51,6 +55,10 @@ export async function createBlogPost(formData: FormData) {
 
 export async function updateBlogPost(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const post_id = formData.get('post_id');
   const title = formData.get('title');
   const slug = formData.get('slug');
@@ -91,6 +99,10 @@ export async function updateBlogPost(formData: FormData) {
 
 export async function deleteBlogPost(post_id: string) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const { error } = await supabase.from('blog_posts').delete().eq('post_id', post_id);
     if (error) {
         console.error('Error deleting blog post:', error);

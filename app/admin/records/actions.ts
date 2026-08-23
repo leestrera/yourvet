@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation';
 
 export async function addRecord(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   
   const appointment_id = formData.get('appointment_id');
   let pet_id = formData.get('pet_id');
@@ -48,6 +52,10 @@ export async function addRecord(formData: FormData) {
 
 export async function editRecord(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   
   const record_id = formData.get('record_id');
 

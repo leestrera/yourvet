@@ -11,6 +11,10 @@ export async function updateAppointmentStatus(formData: FormData) {
   if (!appointmentId) return;
 
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   
   if (action === 'delete') {
     const { error } = await supabase
@@ -37,6 +41,10 @@ export async function updateAppointmentStatus(formData: FormData) {
 
 export async function createAppointment(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   
   const rawData = {
     pet_id: formData.get('pet_id'),
@@ -78,6 +86,10 @@ export async function createAppointment(formData: FormData) {
 
 export async function updateAppointment(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   
   const appointmentId = formData.get('appointment_id') as string;
   

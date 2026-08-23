@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation';
 
 export async function createTestimonial(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const client_name = formData.get('client_name');
   const pet_name = formData.get('pet_name');
   const testimonial = formData.get('testimonial');
@@ -33,6 +37,10 @@ export async function createTestimonial(formData: FormData) {
 
 export async function updateTestimonial(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const testimonial_id = formData.get('testimonial_id');
   const client_name = formData.get('client_name');
   const pet_name = formData.get('pet_name');
@@ -61,6 +69,10 @@ export async function updateTestimonial(formData: FormData) {
 
 export async function deleteTestimonial(testimonial_id: string) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const { error } = await supabase.from('testimonials').delete().eq('testimonial_id', testimonial_id);
     if (error) {
         console.error('Error deleting testimonial:', error);

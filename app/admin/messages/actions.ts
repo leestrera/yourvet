@@ -5,6 +5,10 @@ import { revalidatePath } from 'next/cache';
 
 export async function markAsReplied(formData: FormData) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const message_id = formData.get('message_id');
     const { data: { user } } = await supabase.auth.getUser();
 

@@ -39,13 +39,15 @@ export async function middleware(request: NextRequest) {
   // https://supabase.com/docs/guides/auth/server-side/nextjs
   const { data: { user } } = await supabase.auth.getUser()
 
+  const isPublicLoginRoute = request.nextUrl.pathname === '/admin/login' || request.nextUrl.pathname === '/admin/login/reset-password';
+
   // Redirect to login if unauthenticated and trying to access an admin route
-  if (!user && request.nextUrl.pathname !== '/admin/login') {
+  if (!user && !isPublicLoginRoute) {
     return NextResponse.redirect(new URL('/admin/login', request.url))
   }
 
-  // Redirect to admin dashboard if authenticated and trying to access login page
-  if (user && request.nextUrl.pathname === '/admin/login') {
+  // Redirect to admin dashboard if authenticated and trying to access public login routes
+  if (user && isPublicLoginRoute) {
     return NextResponse.redirect(new URL('/admin', request.url))
   }
 

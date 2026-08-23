@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation';
 
 export async function createStaff(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const first_name = formData.get('first_name');
   const last_name = formData.get('last_name');
   const email = formData.get('email');
@@ -39,6 +43,10 @@ export async function createStaff(formData: FormData) {
 
 export async function updateStaff(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const staff_id = formData.get('staff_id');
   const first_name = formData.get('first_name');
   const last_name = formData.get('last_name');
@@ -73,6 +81,10 @@ export async function updateStaff(formData: FormData) {
 
 export async function deleteStaff(staff_id: string) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const { error } = await supabase.from('staff').delete().eq('staff_id', staff_id);
     if (error) {
         console.error('Error deleting staff:', error);

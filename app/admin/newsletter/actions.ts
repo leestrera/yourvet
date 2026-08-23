@@ -5,6 +5,10 @@ import { revalidatePath } from 'next/cache';
 
 export async function unsubscribe(formData: FormData) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const subscriber_id = formData.get('subscriber_id');
 
     const { error } = await supabase
@@ -24,6 +28,10 @@ export async function unsubscribe(formData: FormData) {
 }
 export async function permanentDelete(formData: FormData) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const subscriber_id = formData.get('subscriber_id');
 
     const { error } = await supabase

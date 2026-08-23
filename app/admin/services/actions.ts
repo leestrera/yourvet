@@ -7,6 +7,10 @@ import { redirect } from 'next/navigation';
 export async function addService(formData: FormData) {
   const supabase = await createClient();
 
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
+
   const rawData = {
     name: formData.get('name'),
     description: formData.get('description') || null,
@@ -33,6 +37,10 @@ export async function addService(formData: FormData) {
 
 export async function editService(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   
   const service_id = formData.get('service_id');
 
@@ -63,6 +71,10 @@ export async function editService(formData: FormData) {
 
 export async function deleteService(formData: FormData) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const service_id = formData.get('service_id');
   
     const { error } = await supabase

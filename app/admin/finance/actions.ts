@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation';
 
 export async function createInvoice(formData: FormData) {
   const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
   const appointment_id = formData.get('appointment_id');
   
   if (!appointment_id) {
@@ -37,6 +41,10 @@ export async function createInvoice(formData: FormData) {
 
 export async function addServiceToInvoice(formData: FormData) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const appointment_id = formData.get('appointment_id');
     const service_id = formData.get('service_id');
     const billing_id = formData.get('billing_id');
@@ -68,6 +76,10 @@ export async function addServiceToInvoice(formData: FormData) {
 
 export async function recordPayment(formData: FormData) {
     const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Unauthorized");
+
     const billing_id = formData.get('billing_id');
     const amount = parseFloat(formData.get('amount') as string);
     const payment_method = formData.get('payment_method');
