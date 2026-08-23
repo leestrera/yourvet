@@ -1,0 +1,893 @@
+/* ── Custom Service Multi-Select Dropdown ── */
+.svc-dropdown {
+    position: relative;
+}
+
+.svc-dropdown-trigger {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-bottom: 2px solid #e5e7eb;
+    border-radius: 0;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-dark);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    transition: border-color 0.3s ease;
+}
+
+.svc-dropdown-trigger:hover {
+    border-bottom-color: #cbd5e1;
+}
+
+.svc-dropdown-trigger svg {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.svc-dropdown.open .svc-dropdown-trigger svg {
+    transform: rotate(180deg);
+}
+
+.svc-dropdown-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #9ca3af;
+}
+
+.svc-dropdown-text.has-selection {
+    color: var(--text-dark);
+}
+
+.svc-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 0.4rem;
+}
+
+.svc-dropdown.open .svc-dropdown-menu {
+    display: block;
+    animation: svcFadeIn 0.15s ease-out;
+}
+
+@keyframes svcFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.svc-dropdown-item {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: background 0.15s ease;
+    margin-bottom: 0 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+
+.svc-dropdown-item:hover {
+    background: #f1f5f9;
+}
+
+.svc-dropdown-item input[type="checkbox"] {
+    display: none;
+}
+
+.svc-check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.svc-check i {
+    font-size: 0.6rem;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.svc-dropdown-item input[type="checkbox"]:checked ~ .svc-check {
+    background: var(--primary-color, #4f46e5);
+    border-color: var(--primary-color, #4f46e5);
+}
+
+.svc-dropdown-item input[type="checkbox"]:checked ~ .svc-check i {
+    opacity: 1;
+}
+
+.svc-dropdown-item input[type="checkbox"]:checked ~ span:last-child {
+    color: var(--primary-color, #4f46e5);
+    font-weight: 600;
+}
+
+/* Appointment Booking Section */
+.appointment-booking {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+}
+
+.booking-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.booking-info {
+    position: sticky;
+    top: 7rem; /* Clears the navbar with a tighter margin */
+    transition: all 0.3s ease;
+}
+
+.booking-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.booking-info > p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.booking-benefits {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.benefit-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(5px);
+}
+
+.benefit-item:last-child {
+    margin-bottom: 0;
+}
+
+.benefit-item i {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-top: 0.25rem;
+    background: var(--white);
+    padding: 0.75rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-item h4 {
+    margin-bottom: 0.25rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.benefit-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.emergency-note {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border: 1px solid #fca5a5;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 15px rgba(248, 113, 113, 0.1);
+}
+
+.emergency-icon i {
+    color: var(--error);
+    font-size: 2rem;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emergency-text h4 {
+    color: var(--error);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.emergency-link {
+    color: var(--error);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.emergency-link:hover {
+    color: #991b1b;
+    text-decoration: underline;
+}
+
+/* Booking Form Container */
+.booking-form-container {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.06);
+    padding: 2.5rem;
+    border: none;
+    position: relative;
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-section:last-child {
+    margin-bottom: 0;
+}
+
+.form-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.75rem;
+}
+
+.email-group {
+    position: relative;
+}
+
+/* Email Tooltip */
+.email-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin-top: 8px;
+    animation: tooltipFadeIn 0.3s ease-out;
+}
+
+.tooltip-content {
+    background: var(--error);
+    color: var(--white);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.tooltip-content i {
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.tooltip-arrow {
+    position: absolute;
+    top: -8px;
+    left: 1rem;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--error);
+}
+
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Form Inputs */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem 1rem;
+    border: none;
+    border-bottom: 2px solid #e5e7eb;
+    border-radius: 0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: transparent;
+    font-family: inherit;
+    color: var(--text-dark);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* iOS-specific select styling */
+.form-group select {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzZCNzI4MCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 16px;
+    padding-right: 3rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-bottom-color: #e5e7eb;
+    background: transparent;
+}
+
+/* Remove autofill styling */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus,
+.form-group input:-webkit-autofill:active,
+.form-group select:-webkit-autofill,
+.form-group textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: var(--text-dark) !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-group textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+/* Form Actions */
+.form-actions {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+}
+
+.form-note {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: nowrap;
+}
+
+.form-note i {
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+    padding-right: 0.22rem !important;
+    margin-right: 0 !important;
+}
+
+/* Simple approach - no flexbox conflicts */
+.form-note-simple {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+.form-note-simple i {
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-top: 0;
+}
+
+.form-note-simple .note-text {
+    display: inline;
+}
+
+/* Appointment Status Section */
+.appointment-status-section {
+    background: var(--primary-color);
+    padding: 3rem 0;
+    margin: 0;
+}
+
+.status-banner {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.status-banner-text h3 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.status-banner-text p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.status-banner-action .btn {
+    background: var(--white);
+    color: var(--primary-color);
+    border: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.status-banner-action .btn:hover {
+    background: var(--background-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Clinic Hours */
+.clinic-hours {
+    background: var(--background-light);
+    padding: 4rem 0;
+}
+
+.hours-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: stretch;
+}
+
+.hours-info,
+.contact-info-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.hours-grid,
+.contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info {
+    justify-content: space-evenly;
+}
+
+.hours-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.hours-grid {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--secondary-color);
+}
+
+.hours-day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.hours-day:hover {
+    background: var(--background-light);
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.hours-day:last-child {
+    border-bottom: none;
+}
+
+.day {
+    font-weight: 700;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.time {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.contact-info-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.contact-info {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--primary-color);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--background-light);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    background: #e0f2fe;
+    transform: translateX(5px);
+}
+
+.contact-item i {
+    color: var(--secondary-color);
+    margin-top: 0.25rem;
+    width: 20px;
+    font-size: 1.25rem;
+}
+
+.contact-item a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Alert Messages */
+.alert {
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    color: #166534;
+    border-color: #22c55e;
+}
+
+.alert-error {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #dc2626;
+    border-color: #ef4444;
+}
+
+.alert i {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .booking-content {
+        gap: 3rem;
+    }
+    
+    .booking-form-container {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .booking-info {
+        position: static;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .hours-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .emergency-note {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .status-banner-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .booking-form-container {
+        padding: 2rem;
+        border-radius: 12px;
+    }
+    
+    .form-section {
+        margin-bottom: 2rem;
+    }
+    
+    /* Mobile-optimized form inputs */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 1rem 0;
+        font-size: 16px; /* Prevents iOS zoom */
+        border: none;
+        border-bottom: 2px solid #e5e7eb;
+        border-radius: 0;
+        background: transparent;
+    }
+    
+    .form-group select {
+        background-size: 16px;
+        background-position: right 0 center;
+        padding-right: 2rem;
+        min-height: 48px; /* Touch-friendly height */
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-section h3 {
+        font-size: 1.125rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn-large {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        min-height: 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    .appointment-booking {
+        padding: 2rem 0;
+    }
+    
+    .booking-form-container {
+        padding: 1.5rem;
+    }
+    
+    /* Extra small mobile optimizations */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 1rem 0;
+        font-size: 16px;
+        border: none;
+        border-bottom: 2px solid #e5e7eb;
+        border-radius: 0;
+        background: transparent;
+    }
+    
+    .form-group select {
+        padding-right: 2rem;
+        background-size: 14px;
+        background-position: right 0 center;
+    }
+    
+    .form-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .form-section h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .hours-day {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .contact-info-section {
+        text-align: center;
+    }
+    
+    .contact-info-section h2 {
+        text-align: center;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1.5rem 1rem;
+    }
+    
+    .contact-item i {
+        margin-top: 0;
+        width: auto;
+        font-size: 1.5rem;
+    }
+    
+    .contact-item strong {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 0.25rem;
+    }
+    
+    .contact-item div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    
+    .contact-item div > * {
+        align-self: center;
+    }
+    
+    .form-note {
+        flex-wrap: nowrap;
+        font-size: 0.8rem;
+        gap: 0;
+        text-align: center;
+        max-width: 100%;
+        align-items: flex-start;
+    }
+    
+    .form-note i {
+        margin-top: 0.28rem;
+    }
+    
+    /* Mobile tooltip adjustments */
+    .email-tooltip {
+        margin-top: 6px;
+    }
+    
+    .tooltip-content {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .tooltip-arrow {
+        left: 0.8rem;
+        border-left-width: 6px;
+        border-right-width: 6px;
+        border-bottom-width: 6px;
+        top: -6px;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .form-group select {
+        background-color: var(--white);
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    
+    .form-group input[type="date"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--white);
+        min-height: 48px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+    }
+}
